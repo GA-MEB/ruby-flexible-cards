@@ -3,11 +3,11 @@ require_relative '../lib/challenge.rb'
 RSpec.describe 'Challenge: ' do
   describe 'Card' do
     before(:all) do
-      @card = Card.new(1, :spades)
+      @card = Card.new(2, :spades)
       @faceCard = Card.new(12, :clubs)
     end
     it 'has a rank and a suit' do
-      expect(@card.rank).to eq(1)
+      expect(@card.rank).to eq(2)
       expect(@card.suit).to be(:spades)
     end
     it 'is comparable' do
@@ -19,6 +19,13 @@ RSpec.describe 'Challenge: ' do
       it 'returns true/false based on whether the card is/is not a face card' do
         expect(@card.face_card?).to eq(false)
         expect(@faceCard.face_card?).to eq(true)
+      end
+    end
+    describe '#to_s' do
+      it 'overrides the default definition, and instead returns a string\
+          of the pattern "[name] of [suit]", e.g. "Ace of Spades"' do
+        expect(@card.to_s).to eq("2 of Spades")
+        expect(@faceCard.to_s).to eq("Queen of Clubs")
       end
     end
   end
